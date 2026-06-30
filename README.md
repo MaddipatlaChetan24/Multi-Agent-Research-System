@@ -2,21 +2,18 @@
 
 # Nova
 
-### Autonomous Multi-Agent Research System
+Autonomous Multi-Agent Research System
 
-Built with **LangGraph**, **LangChain**, and **FastAPI**
-
-[![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=flat-square&logo=python&logoColor=white)]()
-[![LangGraph](https://img.shields.io/badge/LangGraph-Agent%20Workflow-black?style=flat-square)]()
-[![LangChain](https://img.shields.io/badge/LangChain-Framework-green?style=flat-square)]()
-[![FastAPI](https://img.shields.io/badge/FastAPI-Backend-009688?style=flat-square&logo=fastapi)]()
-[![License](https://img.shields.io/badge/License-MIT-blue?style=flat-square)]()
-
-An autonomous AI research platform that coordinates multiple specialized agents to search the web, analyze information, synthesize knowledge, and generate citation-backed research reports.
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![LangGraph](https://img.shields.io/badge/LangGraph-black?style=for-the-badge)
+![LangChain](https://img.shields.io/badge/LangChain-00A67E?style=for-the-badge)
+![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white)
+![OpenAI](https://img.shields.io/badge/OpenAI-412991?style=for-the-badge&logo=openai&logoColor=white)
+![Redis](https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=redis&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-336791?style=for-the-badge&logo=postgresql&logoColor=white)
+![License](https://img.shields.io/badge/MIT-License-blue?style=for-the-badge)
 
 </div>
-
----
 
 # Overview
 
