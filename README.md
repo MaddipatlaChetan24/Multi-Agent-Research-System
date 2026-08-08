@@ -15,18 +15,7 @@ Autonomous Multi-Agent Research System
 
 </div>
 
-# Overview
 
-Nova is a production-oriented multi-agent AI research system built using **LangGraph** and **LangChain**. Instead of relying on a single LLM response, Nova orchestrates multiple specialized AI agents that collaborate to perform comprehensive web research.
-
-The system automatically:
-
-- Searches relevant sources
-- Reads and extracts information
-- Synthesizes structured research reports
-- Reviews its own output
-- Assigns confidence scores
-- Provides citation-backed conclusions
 
 ---
 
