@@ -9,3 +9,9 @@ try:
 except Exception as e:
     print("Error with mistral-small-4:", e)
     
+try:
+    llm = ChatMistralAI(model="mistral-small-latest", temperature=0)
+    res = llm.invoke("hello")
+    print("Success with mistral-small-latest")
+except Exception as e:
+    print("Error with mistral-small-latest:", e)
