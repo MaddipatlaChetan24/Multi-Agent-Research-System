@@ -96,16 +96,4 @@ def _md_to_html(text: str) -> str:
             html_parts.append("<br>")
         else:
             # Bold **text**
-            line = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", line)
-            html_parts.append(f"<p>{line}</p>")
-    return "\n".join(html_parts)
-
-
-# Static files must be mounted AFTER all route definitions
-app.mount("/", StaticFiles(directory="."), name="static")
-
-import os
-
-if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 8000))
-    uvicorn.run("server:app", host="0.0.0.0", port=port, reload=True)
+            line = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", 
