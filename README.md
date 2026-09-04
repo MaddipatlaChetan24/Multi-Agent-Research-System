@@ -8,29 +8,6 @@ Autonomous Multi-Agent Research System
 </div>
 
 
-| Agent | Responsibility |
-|--------|----------------|
-| Search Agent | Generates optimized search queries and discovers relevant sources |
-| Reader Agent | Extracts information from articles and web pages |
-| Writer Agent | Produces structured research reports |
-| Critic Agent | Reviews reports and assigns confidence scores |
-
----
-
-## Real-Time Dashboard
-
-The web interface provides:
-
-- Live agent status
-- Pipeline progress
-- Runtime tracking
-- Token estimation
-- Final report visualization
-
----
-
-## Research Output
-
 Nova generates:
 
 - Structured Markdown reports
