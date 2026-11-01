@@ -37,9 +37,7 @@ def _md_to_html(text: str) -> str:
             html_parts.append(f"<li>{apply_inline(stripped[2:])}</li>")
         elif stripped == "":
             close_list()
-            html_parts.append("<br>")
-        else:
-            close_list()
+            html_parts.append("<
             html_parts.append(f"<p>{apply_inline(stripped)}</p>")
 
     close_list()
