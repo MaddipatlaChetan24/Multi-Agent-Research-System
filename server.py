@@ -1,48 +1,46 @@
-
-                "sources": [],
-                "confidence": "N/A",
-            }
-
-        from pipeline import run_research_pipeline
-        result = run_research_pipeline(query_text)
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
-
-    # Convert plain-text Markdown report → simple HTML for the front-end
-    report_html = _md_to_html(result.get("report", ""))
-    feedback    = result.get("feedback", "")
-
-    # Extract sources / URLs from the report text
-    urls = re.findall(r'https?://[^\s\)\]"<]+', result.get("report", ""))
-    sources = [{"num": i + 1, "title": u, "url": u} for i, u in enumerate(urls[:10])]
-
-    # Derive a confidence score from the critic feedback (e.g. "Score: 8/10")
-    score_match = re.search(r"Score:\s*(\d+)/10", feedback)
-    confidence  = f"{score_match.group(1)}/10" if score_match else "N/A"
-
-    return {
-        "report":     report_html,
-        "feedback":   feedback,
-        "sources":    sources,
-        "confidence": confidence,
-    }
-
-
 def _md_to_html(text: str) -> str:
     """Minimal Markdown → HTML converter (headings, bold, bullets, paragraphs)."""
+    import html as html_lib
+
+    def apply_inline(line: str) -> str:
+        line = html_lib.escape(line)
+        line = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", line)
+        line = re.sub(r"\*(.+?)\*", r"<em>\1</em>", line)
+        return line
+
     lines = text.splitlines()
     html_parts = []
+    in_list = False
+
+    def close_list():
+        nonlocal in_list
+        if in_list:
+            html_parts.append("</ul>")
+            in_list = False
+
     for line in lines:
-        if line.startswith("### "):
-            html_parts.append(f"<h3>{line[4:]}</h3>")
-        elif line.startswith("## "):
-            html_parts.append(f"<h2>{line[3:]}</h2>")
-        elif line.startswith("# "):
-            html_parts.append(f"<h1>{line[2:]}</h1>")
-        elif line.startswith("- ") or line.startswith("* "):
-            html_parts.append(f"<li>{line[2:]}</li>")
-        elif line.strip() == "":
+        stripped = line.strip()
+
+        if stripped.startswith("### "):
+            close_list()
+            html_parts.append(f"<h3>{apply_inline(stripped[4:])}</h3>")
+        elif stripped.startswith("## "):
+            close_list()
+            html_parts.append(f"<h2>{apply_inline(stripped[3:])}</h2>")
+        elif stripped.startswith("# "):
+            close_list()
+            html_parts.append(f"<h1>{apply_inline(stripped[2:])}</h1>")
+        elif stripped.startswith("- ") or stripped.startswith("* "):
+            if not in_list:
+                html_parts.append("<ul>")
+                in_list = True
+            html_parts.append(f"<li>{apply_inline(stripped[2:])}</li>")
+        elif stripped == "":
+            close_list()
             html_parts.append("<br>")
         else:
-            # Bold **text**
-            line = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", 
+            close_list()
+            html_parts.append(f"<p>{apply_inline(stripped)}</p>")
+
+    close_list()
+    return "\n".join(html_parts)
