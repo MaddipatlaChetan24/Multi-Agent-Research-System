@@ -33,8 +33,6 @@ def _md_to_html(text: str) -> str:
         elif stripped.startswith("- ") or stripped.startswith("* "):
             if not in_list:
                 html_parts.append("<ul>")
-                in_list = True
-            html_parts.append(f"<li>{apply_inline(stripped[2:])}</li>")
         elif stripped == "":
             close_list()
             html_parts.append("<
