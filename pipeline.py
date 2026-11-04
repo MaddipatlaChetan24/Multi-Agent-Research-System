@@ -39,4 +39,3 @@ if __name__ == "__main__":
     print("\n--- REPORT ---\n")
     print(result["report"])
     print("\n--- FEEDBACK ---\n")
-    print(result["feedback"])
