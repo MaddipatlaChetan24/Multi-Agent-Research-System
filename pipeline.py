@@ -34,9 +34,6 @@ def run_research_pipeline(topic: str) -> dict:
 
     # ── Critic chain ──────────────────────────────────────────────────────────
     state["feedback"] = critic_chain.invoke({
-        "report": state["report"]
-    })
-    return state
 
 
 if __name__ == "__main__":
