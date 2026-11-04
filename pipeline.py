@@ -22,10 +22,30 @@ def run_research_pipeline(topic: str) -> dict:
         )]
     })
     state["scraped_content"] = reader_result["messages"][-1].content
+
+    # ── Writer chain ──────────────────────────────────────────────────────────
     research_combined = (
         f"SEARCH RESULTS:\n{state['search_results']}\n\n"
         f"DETAILED SCRAPED CONTENT:\n{state['scraped_content']}"
     )
 
+    state["report"] = writer_chain.invoke({
+        "topic": topic,
+        "research": research_combined
     })
 
+    # ── Critic chain ──────────────────────────────────────────────────────────
+    state["feedback"] = critic_chain.invoke({
+        "report": state["report"]
+    })
+
+    return state
+
+
+if __name__ == "__main__":
+    topic = input("\nEnter a research topic: ")
+    result = run_research_pipeline(topic)
+    print("\n--- REPORT ---\n")
+    print(result["report"])
+    print("\n--- FEEDBACK ---\n")
+    print(result["feedback"])
