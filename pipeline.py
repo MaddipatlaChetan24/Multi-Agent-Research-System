@@ -38,7 +38,6 @@ def run_research_pipeline(topic: str) -> dict:
     state["feedback"] = critic_chain.invoke({
         "report": state["report"]
     })
-
     return state
 
 
