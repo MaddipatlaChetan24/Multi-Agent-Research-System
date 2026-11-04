@@ -32,9 +32,6 @@ def run_research_pipeline(topic: str) -> dict:
         "research": research_combined
     })
 
-    # ── Critic chain ──────────────────────────────────────────────────────────
-    state["feedback"] = critic_chain.invoke({
-
 
 if __name__ == "__main__":
     topic = input("\nEnter a research topic: ")
