@@ -40,4 +40,7 @@ def _md_to_html(text: str) -> str:
             html_parts.append("<br>")
         else:
             close_list()
-            html_parts.append(f"<p>{apply_inline(
+            html_parts.append(f"<p>{apply_inline(stripped)}</p>")
+
+    close_list()
+    return "\n".join(html_parts)
