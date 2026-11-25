@@ -9,4 +9,3 @@ If it is a complex query that requires deep web research, reply with EXACTLY the
 Input: hello"""
 res = llm.invoke(prompt)
 print("Classifier returned:", repr(res.content))
-print(f"Time taken: {time.time() - start:.2f}s")
